@@ -36,6 +36,12 @@
 		"ms-python.vscode-pylance",
 		"ms-kubernetes-tools.vscode-kubernetes-tools"
 	],
+
+	"mounts": [
+		"source=/Users/prabhsha/.aws,target=/home/vscode/.aws,type=bind,consistency=cached",
+		"source=/Users/prabhsha/.kube,target=/home/vscode/.kube,type=bind,consistency=cached"
+	],
+
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 	// Use 'postCreateCommand' to run commands after the container is created.
