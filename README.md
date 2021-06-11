@@ -28,7 +28,12 @@ spec:
 ```
 
 
-encode certifictae using:
+### Generate certificate using:
+
+https://devcenter.heroku.com/articles/ssl-certificate-self
+
+
+### encode certifictae using:
 
 > cat server.crt | base64 --wrap=0
 
