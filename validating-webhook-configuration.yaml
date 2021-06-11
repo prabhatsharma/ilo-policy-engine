@@ -1,0 +1,34 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  generation: 1
+  name: admission-policy
+  labels:
+    app: ilo
+webhooks:
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN3ekNDQWF1Z0F3SUJBZ0lKQUwrU3pjQkZhSVhKTUEwR0NTcUdTSWIzRFFFQkJRVUFNQlF4RWpBUUJnTlYKQkFNVENXeHZZMkZzYUc5emREQWVGdzB5TVRBMk1URXdOREUwTWpCYUZ3MHpNVEEyTURrd05ERTBNakJhTUJReApFakFRQmdOVkJBTVRDV3h2WTJGc2FHOXpkRENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DCmdnRUJBT2hvMlZ6ZzJ6R1F1S0FFeGhPMUlKTlNtZENLNzh4RnEwQVpkTUFUVHBoOXc1ZWJKaTArUUFraVZJengKRVlaUW92Z1E2VjdmK3ZCV3k2MnR3WUhGcy9rKzFtTm0yZEUrdFBIaXFyamdtMVlxL0ZqUHRnak1BKzRqTTRFUApYSTN4ZjhjejNjSHk4UVlud0lEbThISCtTZjR6MlVheDFPTWc2dFVqQ2g0SkFTcmRkRHp5REdMNjlQWFVpeVMxClRlVzZSVlJ6Nm8vNWhQRW1adkJSRzYwNnZHbHdvOWQ2RzJwa2dCU21XVDhmVTF2bnNIWnhka2loSTJPRG1jbVoKdHFsY1FOVjA4SXBHVk9VajJpMzl5Y3llejRhdXNwK2pJdHhVNm9BZUJoOWJSOVI1bjZsVllPMkVVSHhha2ZJZgpJTllSUmZPZTJadWNJR2x2SUZzRkROczlrQjhDQXdFQUFhTVlNQll3RkFZRFZSMFJCQTB3QzRJSmJHOWpZV3hvCmIzTjBNQTBHQ1NxR1NJYjNEUUVCQlFVQUE0SUJBUUNXL1RzaFZDKzZjQVk4Tk8zaWo1OEdhQU9OblF6bFFWVHkKbVArbzhTQ1FoTVJKYm13V2p4OHNGZFdwcFVLamZnNWhDZndURDJlZ296SjJoS2x1RlBmMnVzSWlEWU9SdkdWVwpKMy92TGUzdXZUcDNTOTVpZndrbTVCQ0c3bkNEV1RwSkFwanZCaW56SDhTNHJTM2xqUEN5c2VCdzRVd21nTUlVCmdYWW5pM1BVS1dZTllKNGRLbDd1Z0kyRmsrdWE2VU1kL1ZrSUpNVE93UGY1QjhVcjlSNTdiY0RYYTJiVVV0RXIKN2VCTHcrQzRKaW54WDhvVXpWaFRvV3FnUHVBcS9qWkl6anFHbjU5TEJwQlB6WnRSc1QvbXpNQUhLUTdZRDJIVwowYzZ1aTh2dUxVd0hYVnREOHFOYXFwWW96MGdJMjgzeXFSYXpzY3BSUlBJQlBBV1g0T1c0Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      namespace: ilo
+      name: ilo
+      path: /validate
+      port: 8443
+  failurePolicy: Ignore
+  matchPolicy: Exact
+  name: validatingwebhook.prabhatsharma.in
+  namespaceSelector:
+    matchExpressions:
+    - key: app
+      operator: NotIn
+      values: ["ilo"]
+  objectSelector: {}
+  rules:
+  - apiGroups: ["*"]
+    apiVersions: ["*"]
+    operations: [ "CREATE", "UPDATE"]
+    resources: ["pods"]
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 5

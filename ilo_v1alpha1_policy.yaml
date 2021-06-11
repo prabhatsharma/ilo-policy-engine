@@ -1,0 +1,15 @@
+apiVersion: ilo.prabhatsharma.in/v1alpha1
+kind: AdmissionPolicy
+metadata:
+  name: crappypolicy1
+spec:
+  rules:
+  - name: rule1
+    resource: deployment
+    validationFailureAction: enforce
+    rule: |
+      def validator(input_object):
+        if(input_object['name'] == "crappy"):
+          return False
+
+
