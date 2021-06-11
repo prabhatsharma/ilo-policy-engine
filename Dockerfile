@@ -15,5 +15,5 @@ COPY main.py /code/main.py
 
 # ENTRYPOINT ["uvicorn", "main:app", "--port=8000", "--host=0.0.0.0", "--forwarded-allow-ips='*'"]
 
-ENTRYPOINT ["uvicorn", "main:app", "--port=8443", "--host=0.0.0.0", "--forwarded-allow-ips='*'", "--ssl-keyfile=localhost.key", "--ssl-certfile=localhost.cert"]
+ENTRYPOINT ["uvicorn", "main:app", "--port=8443", "--host=0.0.0.0", "--forwarded-allow-ips='*'", "--ssl-keyfile=server.key", "--ssl-certfile=server.cert"]
 

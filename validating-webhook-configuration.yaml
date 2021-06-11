@@ -2,7 +2,7 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   generation: 1
-  name: admission-policy
+  name: ilo-admission-policy
   labels:
     app: ilo
 webhooks:
@@ -28,7 +28,7 @@ webhooks:
   - apiGroups: ["*"]
     apiVersions: ["*"]
     operations: [ "CREATE", "UPDATE"]
-    resources: ["pods"]
+    resources: ["*"]
     scope: '*'
   sideEffects: None
   timeoutSeconds: 5
