@@ -7,8 +7,8 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
 
 WORKDIR /code
 
-COPY localhost.cert /code/localhost.cert
-COPY localhost.key /code/localhost.key
+COPY server.crt /code/server.crt
+COPY server.key /code/server.key
 COPY main.py /code/main.py
 
 

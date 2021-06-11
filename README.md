@@ -30,5 +30,5 @@ spec:
 
 encode certifictae using:
 
-> cat localhost.cert | base64 --wrap=0
+> cat server.crt | base64 --wrap=0
 
