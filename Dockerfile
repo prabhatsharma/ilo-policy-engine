@@ -1,5 +1,5 @@
-# FROM public.ecr.aws/bitnami/python:3.9.5
-FROM python:3.8
+FROM public.ecr.aws/bitnami/python:3.9.5
+# FROM python:3.8
 
 COPY requirements.txt /tmp/pip-tmp/
 RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \

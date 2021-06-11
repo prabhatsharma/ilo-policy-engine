@@ -26,3 +26,9 @@ spec:
 
 
 ```
+
+
+encode certifictae using:
+
+> cat localhost.cert | base64 --wrap=0
+
