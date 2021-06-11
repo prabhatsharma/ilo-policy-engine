@@ -7,15 +7,14 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
 
 WORKDIR /code
 
-COPY server.crt /code/server.crt
-COPY server.key /code/server.key
+COPY cert /code/cert/
 COPY main.py /code/main.py
 
 
 
 # ENTRYPOINT ["uvicorn", "main:app", "--port=8000", "--host=0.0.0.0", "--forwarded-allow-ips='*'"]
 
-ENTRYPOINT ["uvicorn", "main:app", "--port=8443", "--host=0.0.0.0", "--forwarded-allow-ips='*'", "--ssl-keyfile=server.key", "--ssl-certfile=server.crt"]
+ENTRYPOINT ["uvicorn", "main:app", "--port=8443", "--host=0.0.0.0", "--forwarded-allow-ips='*'", "--ssl-keyfile=cert/server.key", "--ssl-certfile=vert/server.crt"]
 
 #  uvicorn main:app --port=8443 --host=0.0.0.0 --forwarded-allow-ips='*' --ssl-keyfile=server.key --ssl-certfile=server.crt
 
