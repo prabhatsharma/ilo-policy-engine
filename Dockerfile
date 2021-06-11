@@ -14,7 +14,7 @@ COPY cert /code/cert
 
 # ENTRYPOINT ["uvicorn", "main:app", "--port=8000", "--host=0.0.0.0", "--forwarded-allow-ips='*'"]
 
-ENTRYPOINT ["uvicorn", "main:app", "--port=8443", "--host=0.0.0.0", "--forwarded-allow-ips='*'", "--ssl-keyfile=cert/server.key", "--ssl-certfile=vert/server.crt"]
+ENTRYPOINT ["uvicorn", "main:app", "--port=8443", "--host=0.0.0.0", "--forwarded-allow-ips='*'", "--ssl-keyfile=cert/server.key", "--ssl-certfile=cert/server.crt"]
 
 #  uvicorn main:app --port=8443 --host=0.0.0.0 --forwarded-allow-ips='*' --ssl-keyfile=server.key --ssl-certfile=server.crt
 
