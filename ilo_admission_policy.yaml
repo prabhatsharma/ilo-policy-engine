@@ -2,10 +2,11 @@ apiVersion: ilo.prabhatsharma.in/v1alpha1
 kind: AdmissionPolicy
 metadata:
   name: crappypolicy1
+  namespace: default
 spec:
   rules:
   - name: rule1
-    resource: deployment
+    resource: pod
     validationFailureAction: enforce
     rule: |
       def validator(input_object):

@@ -5,6 +5,8 @@ from fastapi import FastAPI
 
 import json
 
+from app import policy_handler
+
 app = FastAPI()
 
 
@@ -13,7 +15,6 @@ class Item(BaseModel):
     description: Optional[str] = None
     price: float
     tax: Optional[float] = None
-
 
 
 @app.get("/")
@@ -28,15 +29,23 @@ async def read_root():
 
 @app.post("/validate")
 async def validate(admission_review: dict):
-    print("AdmissionReview Object received is: ", json.dumps(admission_review))
+    # print("AdmissionReview Object received is: ", json.dumps(admission_review))
     object_kind = admission_review["request"]["kind"]["kind"]
 
+    # v1.AdmissionReview or v1beta1.AdmissionReview
     api_version = admission_review["apiVersion"]
-    print("Kuberentes Object is: ", object_kind)
+    # print("Kuberentes Object is: ", object_kind)
+
+    if(object_kind.lower() == "admissionpolicy"):
+        policy_handler.create_update(admission_review["request"]["object"])
+    if(object_kind.lower() == "pod"):
+        policy_handler.resource(admission_review["request"]["object"])
+
     res = {
-        "apiVersion": api_version,
+        "apiVersion": api_version,  # Must return same that we get
         "kind": "AdmissionReview",
         "response": {
+            # Must return same that we get
             "uid": admission_review["request"]["uid"],
             "allowed": True,
             "status": {
@@ -46,5 +55,3 @@ async def validate(admission_review: dict):
         }
     }
     return res
-
-
