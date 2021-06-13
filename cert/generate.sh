@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generate a CA key file
-openssl genrsa -aes256 -passout pass:somepassword -out server.pass.key 4096
+openssl genrsa -aes256 -passout pass:somepassword -out server.pass.key 2048
 
 # Generate the key file for the cert
 openssl rsa -passin pass:somepassword -in server.pass.key -out server.key 
@@ -27,6 +27,3 @@ printf "\nChecking SAN \n"
 openssl x509  -noout -text -in server.crt | grep DNS:
 
 printf "\n"
-
-export CA_BUNDLE=$(cat server.crt | base64 | tr -d '\n')
-cat _manifest_.yaml | envsubst > manifest.yaml

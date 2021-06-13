@@ -27,6 +27,8 @@ async def read_root():
 @app.post("/validate")
 async def validate(admission_review: dict):
     print("AdmissionReview Object received is: ", admission_review)
+    object_kind = admission_review["request"]["kind"]["kind"]
+    print("Kuberentes Object is: ", object_kind)
     res = {
         "apiVersion": "admission.k8s.io/v1",
         "kind": "AdmissionReview",
