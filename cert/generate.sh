@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Generate a CA key file
-openssl genrsa -aes256 -passout pass:somepassword -out server.pass.key 2048
+openssl genrsa -aes256 -passout pass:somepassword -out server.pass.key 4096
 
 # Generate the key file for the cert
 openssl rsa -passin pass:somepassword -in server.pass.key -out server.key 
