@@ -3,6 +3,8 @@ from typing import Optional
 
 from fastapi import FastAPI
 
+import json
+
 app = FastAPI()
 
 
@@ -26,11 +28,13 @@ async def read_root():
 
 @app.post("/validate")
 async def validate(admission_review: dict):
-    print("AdmissionReview Object received is: ", admission_review)
+    print("AdmissionReview Object received is: ", json.dumps(admission_review))
     object_kind = admission_review["request"]["kind"]["kind"]
+
+    api_version = admission_review["apiVersion"]
     print("Kuberentes Object is: ", object_kind)
     res = {
-        "apiVersion": "admission.k8s.io/v1",
+        "apiVersion": api_version,
         "kind": "AdmissionReview",
         "response": {
             "uid": admission_review["request"]["uid"],
