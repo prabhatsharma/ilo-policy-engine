@@ -37,8 +37,10 @@ async def validate(admission_review: dict):
     # print("Kuberentes Object is: ", object_kind)
 
     if(object_kind.lower() == "admissionpolicy"):
+        print("AdmissionReview Object: ", admission_review)
         policy_handler.create_update(admission_review["request"]["object"])
     if(object_kind.lower() == "pod"):
+        print("AdmissionReview Object: ", admission_review)
         policy_handler.resource(admission_review["request"]["object"])
 
     res = {
@@ -55,3 +57,4 @@ async def validate(admission_review: dict):
         }
     }
     return res
+
