@@ -18,8 +18,8 @@ printf "\n Generating certificate \n"
 openssl x509 -req -days 3650 -in server.csr -signkey server.key -out server.crt -extfile csr.conf -extensions v3_req
 
 # Generate base64 encoded cert that needs to be placed in ValidatingWebhookConfiguration manifest
-# cat server.crt | base64 --wrap=0
-cat server.crt | base64
+cat server.crt | base64 --wrap=0
+# cat server.crt | base64
 
 
 printf "\nChecking SAN \n"
@@ -27,3 +27,6 @@ printf "\nChecking SAN \n"
 openssl x509  -noout -text -in server.crt | grep DNS:
 
 printf "\n"
+
+export CA_BUNDLE=$(cat server.crt | base64 | tr -d '\n')
+cat _manifest_.yaml | envsubst > manifest.yaml
