@@ -8,6 +8,7 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
 WORKDIR /code
 
 COPY cert /code/cert
+COPY app /code/app
 COPY main.py /code/main.py
 
 

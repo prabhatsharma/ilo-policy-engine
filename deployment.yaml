@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: ilo
-        image: 525158249545.dkr.ecr.us-west-2.amazonaws.com/ilo:v18
+        image: 525158249545.dkr.ecr.us-west-2.amazonaws.com/ilo:v20
         resources:
           limits:
             memory: "128Mi"
