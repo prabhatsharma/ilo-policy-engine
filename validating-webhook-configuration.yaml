@@ -27,7 +27,7 @@ webhooks:
   rules:
   - apiGroups: ["*"]
     apiVersions: ["*"]
-    operations: [ "create", "update"]
+    operations: [ "CREATE", "UPDATE"]
     resources: ["*"]
     scope: '*'
   sideEffects: None
