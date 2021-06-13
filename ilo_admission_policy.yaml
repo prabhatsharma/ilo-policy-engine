@@ -8,9 +8,6 @@ spec:
   - name: rule1
     resource: pod
     validationFailureAction: enforce
-    rule: |
-      def validator(input_object):
-        if(input_object['name'] == "crappy"):
-          return False
+    rule: resource['metadata']['name'] == 'crappy'
 
 
